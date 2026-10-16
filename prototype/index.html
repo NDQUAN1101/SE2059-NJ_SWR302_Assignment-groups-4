@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniPulse - Modern Campus Academic & Intelligent Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">UniPulse</span>
+        <span class="brand-badge">SWR302 • Group 4</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="registration">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Course Registration & Timetable
+      </button>
+      <button class="nav-tab" data-tab="degree-audit">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Degree Audit & Prerequisites
+      </button>
+      <button class="nav-tab" data-tab="tuition">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Tuition & Payments
+      </button>
+      <button class="nav-tab" data-tab="operations">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Registrar & Concurrency Lab
+      </button>
+    </nav>
+
+    <!-- Student Info & Mode Controls -->
+    <div class="nav-user">
+      <div class="user-pill">
+        <div class="avatar">QN</div>
+        <div class="user-meta">
+          <span class="user-name">Nguyen Duc Quan</span>
+          <span class="user-sub">SE1804 • Major: SE</span>
+        </div>
+      </div>
+      <button id="theme-toggle" class="icon-btn" title="Toggle Dark/Light Mode">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- TAB 1: REGISTRATION & TIMETABLE -->
+    <section id="tab-registration" class="tab-pane active">
+      <!-- Registration Announcement Banner -->
+      <div class="banner">
+        <div class="banner-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="banner-body">
+          <div class="banner-title">Fall 2026 Course Registration Window: <strong>ACTIVE</strong></div>
+          <div class="banner-desc">Senior & Junior Phase • Remaining Add/Drop Window: <span id="countdown-timer" class="badge-time">6d 14h 22m 10s</span> • Credit Limit: <span class="badge-credit">Min 10 / Max 20 Credits</span></div>
+        </div>
+        <div class="banner-stats">
+          <div class="stat-item">
+            <span class="stat-label">Enrolled Credits</span>
+            <span id="header-credits" class="stat-val">12 / 20</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Server Status</span>
+            <span class="stat-val status-online">● Optimal (42ms)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-column workspace -->
+      <div class="grid-layout">
+        <!-- Left Column: Course Search & Available Sections -->
+        <div class="col-left">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Available Course Sections</h2>
+              <span class="chip chip-info" id="course-count">5 Courses Listed</span>
+            </div>
+            
+            <div class="search-bar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="course-search-input" placeholder="Search by course code, title, or lecturer...">
+            </div>
+
+            <div class="course-list" id="course-list-container">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Schedule Matrix & Cart -->
+        <div class="col-right">
+          <!-- Timetable Card -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Weekly Schedule Planner</h2>
+                <p class="card-subtitle">Real-time collision detection active • Color coded by course</p>
+              </div>
+              <div class="header-actions">
+                <button class="btn btn-secondary btn-sm" id="btn-export-ical">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export .ics
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btn-clear-cart">Clear Draft</button>
+              </div>
+            </div>
+
+            <!-- Collision Alert Banner (Dynamically shown) -->
+            <div id="collision-alert" class="alert alert-danger hidden">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <div id="collision-alert-text">Schedule Conflict Detected!</div>
+            </div>
+
+            <!-- Timetable Grid (Monday to Saturday, Slot 1 to Slot 6) -->
+            <div class="timetable-wrapper">
+              <div class="timetable-grid" id="timetable-grid">
+                <!-- Header Row -->
+                <div class="time-header slot-cell">Time / Slot</div>
+                <div class="day-header">Mon (T2)</div>
+                <div class="day-header">Tue (T3)</div>
+                <div class="day-header">Wed (T4)</div>
+                <div class="day-header">Thu (T5)</div>
+                <div class="day-header">Fri (T6)</div>
+                <div class="day-header">Sat (T7)</div>
+
+                <!-- Slots Rows generated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Registration Cart & Checkout -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Registration Cart & Enrolled Summary</h2>
+              <span class="chip chip-success" id="cart-credits-summary">12 Credits Selected</span>
+            </div>
+
+            <div class="cart-table-wrapper">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Section</th>
+                    <th>Credits</th>
+                    <th>Schedule</th>
+                    <th>Seats (Live)</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-table-body">
+                  <!-- Rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cart-footer">
+              <div class="cart-notices">
+                <span class="rule-hint">⚡ Guaranteed Zero-Overselling via Redis Lua Atomic Lock</span>
+                <span class="rule-hint">🔒 Seats held for 5 minutes during confirmation</span>
+              </div>
+              <button class="btn btn-primary btn-lg" id="btn-submit-registration">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Confirm & Submit All Enrolled Courses
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: DEGREE AUDIT & PREREQUISITES -->
+    <section id="tab-degree-audit" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Academic Degree Audit & Graduation Pathway</h2>
+            <p class="card-subtitle">Major: Software Engineering (B.S. in SE) • Catalog Year: 2024–2028</p>
+          </div>
+          <div class="progress-pill">
+            <span class="pill-label">Total Completion:</span>
+            <span class="pill-val">76% (106 / 140 Credits)</span>
+          </div>
+        </div>
+
+        <!-- Progress Overview Cards -->
+        <div class="audit-stats-grid">
+          <div class="audit-card">
+            <div class="audit-card-title">General Education</div>
+            <div class="audit-card-val text-success">24 / 24 Credits</div>
+            <div class="progress-bar"><div class="progress-fill fill-success" style="width: 100%;"></div></div>
+            <span class="badge-status status-completed">100% Completed</span>
+          </div>
+          <div class="audit-card">
+            <div class="audit-card-title">Software Engineering Core</div>
+            <div class="audit-card-val text-primary">54 / 64 Credits</div>
+            <div class="progress-bar"><div class="progress-fill fill-primary" style="width: 84%;"></div></div>
+            <span class="badge-status status-progress">In Progress (SWR302 Enrolled)</span>
+          </div>
+          <div class="audit-card">
+            <div class="audit-card-title">Technical Electives</div>
+            <div class="audit-card-val text-warning">18 / 28 Credits</div>
+            <div class="progress-bar"><div class="progress-fill fill-warning" style="width: 64%;"></div></div>
+            <span class="badge-status status-progress">2 Courses Remaining</span>
+          </div>
+          <div class="audit-card">
+            <div class="audit-card-title">Capstone & OJT</div>
+            <div class="audit-card-val text-neutral">10 / 24 Credits</div>
+            <div class="progress-bar"><div class="progress-fill fill-neutral" style="width: 41%;"></div></div>
+            <span class="badge-status status-pending">Scheduled Term 8</span>
+          </div>
+        </div>
+
+        <!-- Prerequisite Dependency Tree Visualizer -->
+        <h3 class="section-title mt-4">Curriculum Prerequisite Graph (Sample Chain: PRJ301 &rarr; SWR302 &rarr; SWP391)</h3>
+        <div class="prereq-graph-container" id="prereq-graph">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: TUITION & PAYMENTS -->
+    <section id="tab-tuition" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Tuition Assessment & Electronic Payment</h2>
+            <p class="card-subtitle">Fall 2026 Semester Billing Statement • Invoice: <strong>INV-2026-9812</strong></p>
+          </div>
+          <div class="invoice-status badge-unpaid" id="invoice-status-badge">Payment Status: UNPAID</div>
+        </div>
+
+        <div class="tuition-grid">
+          <div class="tuition-breakdown">
+            <h3 class="subsection-title">Assessed Course Fee Breakdown</h3>
+            <table class="tuition-table">
+              <thead>
+                <tr>
+                  <th>Course Code</th>
+                  <th>Course Title</th>
+                  <th>Credits</th>
+                  <th>Credit Rate</th>
+                  <th>Lab Fee</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody id="tuition-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5" class="text-right"><strong>Tuition Subtotal:</strong></td>
+                  <td id="tuition-subtotal">6,240,000 VND</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-right">Specialized Lab Surcharges (SWR302/PRJ301):</td>
+                  <td id="tuition-lab">1,200,000 VND</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-right">Merit Scholarship Discount (10%):</td>
+                  <td class="text-success" id="tuition-discount">- 744,000 VND</td>
+                </tr>
+                <tr class="total-row">
+                  <td colspan="5" class="text-right"><strong>TOTAL PAYABLE:</strong></td>
+                  <td class="total-highlight" id="tuition-grand-total">6,696,000 VND</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="payment-card">
+            <h3 class="subsection-title">Instant Electronic Payment (VietQR)</h3>
+            <p class="payment-desc">Scan using any Banking App (Vietcombank, MB, Techcombank, Momo) to reconcile tuition instantly.</p>
+            
+            <div class="qr-box">
+              <div class="qr-canvas-mock" id="qr-container">
+                <!-- SVG VietQR Representation -->
+                <svg width="180" height="180" viewBox="0 0 100 100" fill="none">
+                  <rect width="100" height="100" fill="white" rx="8"/>
+                  <rect x="10" y="10" width="25" height="25" fill="#0f172a"/>
+                  <rect x="15" y="15" width="15" height="15" fill="white"/>
+                  <rect x="18" y="18" width="9" height="9" fill="#0f172a"/>
+                  
+                  <rect x="65" y="10" width="25" height="25" fill="#0f172a"/>
+                  <rect x="70" y="15" width="15" height="15" fill="white"/>
+                  <rect x="73" y="18" width="9" height="9" fill="#0f172a"/>
+                  
+                  <rect x="10" y="65" width="25" height="25" fill="#0f172a"/>
+                  <rect x="15" y="70" width="15" height="15" fill="white"/>
+                  <rect x="18" y="73" width="9" height="9" fill="#0f172a"/>
+
+                  <!-- Data Dots -->
+                  <circle cx="45" cy="20" r="3" fill="#6366f1"/>
+                  <circle cx="55" cy="20" r="3" fill="#0f172a"/>
+                  <circle cx="45" cy="45" r="4" fill="#0f172a"/>
+                  <circle cx="55" cy="50" r="3" fill="#6366f1"/>
+                  <circle cx="40" cy="70" r="3" fill="#0f172a"/>
+                  <circle cx="55" cy="75" r="3" fill="#0f172a"/>
+                  <circle cx="75" cy="55" r="3" fill="#0f172a"/>
+                  <circle cx="85" cy="75" r="3" fill="#6366f1"/>
+                </svg>
+              </div>
+              <div class="qr-meta">
+                <span class="qr-ref">Ref: <strong>UNIPULSE-SE180123-9812</strong></span>
+                <span class="qr-amount">Amount: <strong>6,696,000 VND</strong></span>
+              </div>
+            </div>
+
+            <button class="btn btn-success btn-lg w-full" id="btn-simulate-payment">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Simulate Instant Banking Payment Confirmation
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: REGISTRAR & CONCURRENCY LAB -->
+    <section id="tab-operations" class="tab-pane">
+      <!-- Special Showcase for SWR302 Professor -->
+      <div class="card highlight-card">
+        <div class="card-header">
+          <div>
+            <div class="chip chip-accent">SWR302 Professor Showcase • Concurrency Stress Lab</div>
+            <h2 class="card-title mt-1">Live Concurrency Benchmark & Race Condition Simulator</h2>
+            <p class="card-subtitle">Simulate 500 concurrent students competing for the <strong>LAST 2 SEATS</strong> at the identical millisecond (09:00:00.000).</p>
+          </div>
+          <button class="btn btn-danger btn-lg" id="btn-run-stress-test">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Trigger 500-User Concurrency Stampede
+          </button>
+        </div>
+
+        <div class="stress-results-grid">
+          <div class="metric-box">
+            <span class="metric-title">Concurrent Requests</span>
+            <span class="metric-val" id="metric-reqs">500</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">Available Initial Seats</span>
+            <span class="metric-val text-warning" id="metric-seats">2</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">Successful Bookings</span>
+            <span class="metric-val text-success" id="metric-booked">0</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">Moved to Waitlist</span>
+            <span class="metric-val text-primary" id="metric-waitlisted">0</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">Oversold Seats (Violations)</span>
+            <span class="metric-val text-danger" id="metric-oversold">0 (0.00%)</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-title">Execution Latency</span>
+            <span class="metric-val" id="metric-latency">0 ms</span>
+          </div>
+        </div>
+
+        <div class="console-box" id="stress-console">
+          <div class="console-line text-muted">[System Ready] Redis Cluster connected. Lua script 'atomic_reserve_seat.lua' primed on node 10.0.4.12:6379...</div>
+        </div>
+      </div>
+
+      <!-- Registrar Section Operations -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Academic Operations: Section Capacity & Viability Balancing</h2>
+            <p class="card-subtitle">BR-CAP-002 Violation Watch: Sections under 15 students require review or merger.</p>
+          </div>
+          <span class="chip chip-danger" id="under-enrolled-count">1 Section Under-Enrolled</span>
+        </div>
+
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Section Code</th>
+              <th>Course</th>
+              <th>Lecturer</th>
+              <th>Capacity</th>
+              <th>Enrolled</th>
+              <th>Status</th>
+              <th>Registrar Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CS101-01</strong></td>
+              <td>Introduction to Computing</td>
+              <td>Dr. Tran Van A</td>
+              <td>35</td>
+              <td><span class="badge-warning">9 / 35 (Under-enrolled)</span></td>
+              <td><span class="badge-status status-danger">Review Pending</span></td>
+              <td>
+                <button class="btn btn-warning btn-sm" id="btn-merge-cs101">One-Click Merge into CS101-02</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS101-02</strong></td>
+              <td>Introduction to Computing</td>
+              <td>Dr. Le Thi B</td>
+              <td>35</td>
+              <td><span class="badge-success">22 / 35 (Viable)</span></td>
+              <td><span class="badge-status status-completed">Healthy</span></td>
+              <td><button class="btn btn-secondary btn-sm" disabled>Balanced</button></td>
+            </tr>
+            <tr>
+              <td><strong>SWR302-SE1804</strong></td>
+              <td>Software Requirements</td>
+              <td>Prof. Nguyen D.</td>
+              <td>35</td>
+              <td><span class="badge-success">33 / 35 (Near Full)</span></td>
+              <td><span class="badge-status status-completed">Healthy</span></td>
+              <td><button class="btn btn-secondary btn-sm" id="btn-expand-swr">Expand Capacity (+5)</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Javascript Core -->
+  <script src="app.js"></script>
+</body>
+</html>
