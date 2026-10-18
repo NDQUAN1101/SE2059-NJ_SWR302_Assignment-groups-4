@@ -103,17 +103,17 @@ flowchart LR
     ActorFinance --> UC06
 
     %% Includes
-    UC01 -.->|<<include>>| ValidatePrereq
-    UC01 -.->|<<include>>| DetectClash
-    UC02 -.->|<<include>>| AtomicSeatLock
-    UC02 -.->|<<include>>| AssessTuition
-    UC04 -.->|<<include>>| DetectClash
-    UC04 -.->|<<include>>| AtomicSeatLock
-    UC08 -.->|<<include>>| LogAudit
-    UC07 -.->|<<include>>| LogAudit
+    UC01 -.->|"<<include>>"| ValidatePrereq
+    UC01 -.->|"<<include>>"| DetectClash
+    UC02 -.->|"<<include>>"| AtomicSeatLock
+    UC02 -.->|"<<include>>"| AssessTuition
+    UC04 -.->|"<<include>>"| DetectClash
+    UC04 -.->|"<<include>>"| AtomicSeatLock
+    UC08 -.->|"<<include>>"| LogAudit
+    UC07 -.->|"<<include>>"| LogAudit
 
     %% Extends
-    UC05 -.->|<<extend>>\n[if section full]| UC02
+    UC05 -.->|"<<extend>><br/>[if section full]"| UC02
 ```
 
 ---
@@ -124,7 +124,7 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    Start([Student clicks 'Submit Registration']) --> EdgeCheck{Traffic Surge > 3,500 req/s?}
+    Start([Student clicks 'Submit Registration']) --> EdgeCheck{"Traffic Surge > 3,500 req/s?"}
     
     %% Virtual Waiting Room Path
     EdgeCheck -- Yes --> QueueTicket[Issue Signed Token Bucket Queue Ticket]
@@ -135,24 +135,24 @@ flowchart TD
     IssueToken --> WindowCheck
     
     %% Direct Path
-    EdgeCheck -- No --> WindowCheck{Student Window Active?\n(BR-TIME-001)}
+    EdgeCheck -- No --> WindowCheck{"Student Window Active?<br/>(BR-TIME-001)"}
     
     WindowCheck -- No --> RejectWindow[Display 'Registration Window Not Open Yet' Countdown] --> EndFailed([Terminated])
-    WindowCheck -- Yes --> CreditCheck{10 <= Total Credits <= 20?\n(BR-CRED-001)}
+    WindowCheck -- Yes --> CreditCheck{"10 <= Total Credits <= 20?<br/>(BR-CRED-001)"}
     
     CreditCheck -- No --> RejectCredit[Display Credit Boundary Violation Alert] --> EndFailed
-    CreditCheck -- Yes --> PrereqCheck{Prerequisites Passed?\n(BR-PRE-001)}
+    CreditCheck -- Yes --> PrereqCheck{"Prerequisites Passed?<br/>(BR-PRE-001)"}
     
     PrereqCheck -- No --> RejectPrereq[Highlight Missing Prerequisites with Appeal Option] --> EndFailed
-    PrereqCheck -- Yes --> ClashCheck{Time Clash Detected?\n(FR-SCH-002)}
+    PrereqCheck -- Yes --> ClashCheck{"Time Clash Detected?<br/>(FR-SCH-002)"}
     
     ClashCheck -- Yes --> RejectClash[Highlight Conflicting Grid Slot in Red] --> EndFailed
     ClashCheck -- No --> ExecuteLua[Execute In-Memory Atomic Redis Lua Script]
     
-    ExecuteLua --> SeatCheck{Remaining Seats > 0?\n(Atomic DECRBY)}
+    ExecuteLua --> SeatCheck{"Remaining Seats > 0?<br/>(Atomic DECRBY)"}
     
     %% Seat Available
-    SeatCheck -- Yes --> LockSeat[Atomically Decrement Seat & Bind Student ID\nTTL = 5 Minutes]
+    SeatCheck -- Yes --> LockSeat["Atomically Decrement Seat & Bind Student ID<br/>TTL = 5 Minutes"]
     LockSeat --> AsyncKafka[Publish RegistrationConfirmedEvent to Kafka Queue]
     AsyncKafka --> WriteDB[(Worker writes to PostgreSQL with Optimistic Lock)]
     WriteDB --> UpdateTuition[Append Course Fees to Tuition Invoice]
@@ -160,10 +160,10 @@ flowchart TD
     SendToast --> EndSuccess([Registration Successfully Confirmed])
     
     %% Seat Full
-    SeatCheck -- No --> CheckWaitlist{Waitlist Available?\n(< 25% Capacity)}
-    CheckWaitlist -- Yes --> OfferWaitlist[Prompt: 'Section Full. Join Waitlist Queue #N?']
+    SeatCheck -- No --> CheckWaitlist{"Waitlist Available?<br/>(< 25% Capacity)"}
+    CheckWaitlist -- Yes --> OfferWaitlist["Prompt: 'Section Full. Join Waitlist Queue #N?'"]
     OfferWaitlist --> EndWaitlist([Waitlist Choice Rendered])
-    CheckWaitlist -- No --> PromptAlternate[Alert: 'Section & Waitlist Full. Choose Alternate Section']
+    CheckWaitlist -- No --> PromptAlternate["Alert: 'Section & Waitlist Full. Choose Alternate Section'"]
     PromptAlternate --> EndFailed
 ```
 
